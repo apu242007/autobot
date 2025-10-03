@@ -27,10 +27,22 @@ cd autobot
 
 ## 💻 Uso
 
-### Modo Interactivo
+### Inicio Rápido con Script
 
 ```bash
-python evaluador_agentes.py
+./start.sh
+```
+
+El script mostrará un menú con las siguientes opciones:
+1. Modo Interactivo (chatbot completo)
+2. Demo Automática (ver ejemplo)
+3. Ejecutar Tests (verificar funcionamiento)
+4. Ejemplos Programáticos (integración)
+
+### Modo Interactivo Directo
+
+```bash
+python3 evaluador_agentes.py
 ```
 
 ### Comandos Disponibles
