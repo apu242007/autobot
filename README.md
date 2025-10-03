@@ -25,3 +25,15 @@ black src tests
 pytest
 ```
 
+## Ejecución de la demo
+
+Tras instalar las dependencias puedes ejecutar una simulación básica sin
+configuración adicional con:
+
+```bash
+python -m autobot.demo
+```
+
+El comando imprime en consola la información del escenario seleccionado, la
+conversación de ejemplo y el informe final generado por el motor de evaluación.
+
