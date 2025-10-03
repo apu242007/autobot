@@ -1,4 +1,7 @@
+codex/add-documentation-for-chatbot-evaluation-system-vvbk9l
+=======
 codex/add-documentation-for-chatbot-evaluation-system-176ypa
+ main
 # Autobot
 
 Sistema modular para simular clientes con personalidades complejas y evaluar el
@@ -24,6 +27,11 @@ python -m venv .venv
 source .venv/bin/activate
 # En Windows (PowerShell)
 .\.venv\Scripts\Activate.ps1
+codex/add-documentation-for-chatbot-evaluation-system-vvbk9l
+# Si no puedes instalar en modo editable (por ejemplo, sin conexión),
+# usa `python run_demo.py` para lanzar la simulación directamente.
+
+ main
 pip install -e .
 black src tests
 pytest
@@ -40,11 +48,22 @@ python -m autobot.demo
 
 # Alternativa: ejecutar la demo directamente como módulo del paquete
 python -m autobot
+codex/add-documentation-for-chatbot-evaluation-system-vvbk9l
+
+# Alternativa sin instalación previa (añade automáticamente ``src`` al PYTHONPATH)
+python run_demo.py
+
+# Servidor web estático con interfaz HTML
+python serve_demo.py  # abre http://127.0.0.1:8000 en el navegador
+=======
+main
 ```
 
 El comando imprime en consola la información del escenario seleccionado, la
 conversación de ejemplo y el informe final generado por el motor de evaluación.
 
+codex/add-documentation-for-chatbot-evaluation-system-vvbk9l
+=======
 =======
 # Autobot - Chatbot Evaluador de Agentes
 

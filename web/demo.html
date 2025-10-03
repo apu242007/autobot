@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Autobot &mdash; Demo interactiva</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 2rem;
+        background: #0f172a;
+        color: #f8fafc;
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+
+      main {
+        width: min(900px, 100%);
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        border-radius: 18px;
+        padding: 2.5rem;
+        box-shadow: 0 20px 45px rgba(15, 15, 25, 0.35);
+      }
+
+      h1 {
+        margin-top: 0;
+        font-size: clamp(1.8rem, 1.2rem + 1vw, 2.4rem);
+        letter-spacing: 0.04em;
+      }
+
+      p.description {
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        color: #cbd5f5;
+      }
+
+      button {
+        background: linear-gradient(135deg, #2563eb, #38bdf8);
+        border: none;
+        color: #ffffff;
+        font-weight: 600;
+        padding: 0.85rem 1.8rem;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          opacity 0.2s ease;
+        box-shadow: 0 14px 25px rgba(59, 130, 246, 0.35);
+      }
+
+      button:hover:enabled {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 30px rgba(59, 130, 246, 0.45);
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .output {
+        margin-top: 2.2rem;
+        background: rgba(15, 23, 42, 0.95);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        border-radius: 16px;
+        padding: 1.5rem;
+        min-height: 260px;
+        overflow: auto;
+        white-space: pre-wrap;
+        font-family: "JetBrains Mono", "Fira Code", monospace;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #e2e8f0;
+      }
+
+      .status {
+        margin-top: 0.75rem;
+        font-size: 0.95rem;
+        color: #93c5fd;
+      }
+
+      footer {
+        margin-top: 2rem;
+        font-size: 0.85rem;
+        color: #94a3b8;
+      }
+
+      a {
+        color: #38bdf8;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Autobot &middot; Simulación web</h1>
+      <p class="description">
+        Ejecuta la simulación predefinida sin instalar el paquete. Haz clic en el
+        botón y espera unos segundos mientras se genera el escenario, la
+        conversación y el informe de evaluación completo.
+      </p>
+      <button id="run-demo" type="button">Ejecutar demo</button>
+      <div class="status" id="status">Listo para ejecutar.</div>
+      <pre class="output" id="output">&nbsp;</pre>
+      <footer>
+        Levanta el servidor con <code>python serve_demo.py</code> y abre esta
+        página en tu navegador en <code>http://localhost:8000</code>.
+      </footer>
+    </main>
+    <script>
+      const runButton = document.getElementById("run-demo");
+      const statusLabel = document.getElementById("status");
+      const output = document.getElementById("output");
+
+      async function ejecutarDemo() {
+        runButton.disabled = true;
+        statusLabel.textContent = "Generando informe...";
+        output.textContent = "";
+
+        try {
+          const response = await fetch("/api/demo", { cache: "no-store" });
+          if (!response.ok) {
+            throw new Error(`Error ${response.status}`);
+          }
+          const data = await response.json();
+          output.textContent = data.report;
+          statusLabel.textContent = "Informe generado correctamente.";
+        } catch (error) {
+          console.error(error);
+          statusLabel.textContent =
+            "No se pudo ejecutar la demo. Revisa la consola del servidor.";
+          output.textContent = "";
+        } finally {
+          runButton.disabled = false;
+        }
+      }
+
+      runButton.addEventListener("click", ejecutarDemo);
+    </script>
+  </body>
+</html>
