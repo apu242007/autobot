@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autobot"
+version = "0.1.0"
+description = "Sistema de simulación y evaluación para agentes de atención al cliente"
+authors = [{name = "Autobot Team"}]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.black]
+line-length = 88
+
