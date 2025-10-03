@@ -1,10 +1,10 @@
-"""Pruebas para la ejecución de la demo integrada."""
+"""Tests for running the integrated demo."""
 
 from autobot.demo import ejecutar_demo
 
 
 def test_ejecutar_demo_devuelve_informe() -> None:
-    """La demo debe generar un informe con puntaje global."""
+    """The demo should generate a report with a global score."""
 
     resultado = ejecutar_demo()
     assert "Puntaje global" in resultado
