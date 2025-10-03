@@ -1,0 +1,2 @@
+# No external dependencies required
+# This chatbot evaluator runs with Python 3.6+ standard library only
