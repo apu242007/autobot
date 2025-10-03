@@ -22,9 +22,13 @@ def test_paquete_exponible_como_modulo() -> None:
     entorno = os.environ.copy()
     pythonpath = entorno.get("PYTHONPATH", "")
     ruta_src = str(Path("src").resolve())
+codex/add-documentation-for-chatbot-evaluation-system-vvbk9l
     entorno["PYTHONPATH"] = (
         f"{ruta_src}{os.pathsep}{pythonpath}" if pythonpath else ruta_src
     )
+=======
+    entorno["PYTHONPATH"] = (f"{ruta_src}{os.pathsep}{pythonpath}" if pythonpath else ruta_src)
+main
 
     proceso = subprocess.run(
         [sys.executable, "-m", "autobot"],
@@ -34,6 +38,7 @@ def test_paquete_exponible_como_modulo() -> None:
         env=entorno,
     )
     assert "Puntaje global" in proceso.stdout
+codex/add-documentation-for-chatbot-evaluation-system-vvbk9l
 
 
 def test_script_run_demo_se_ejecuta_desde_raiz() -> None:
@@ -46,3 +51,5 @@ def test_script_run_demo_se_ejecuta_desde_raiz() -> None:
         text=True,
     )
     assert "Puntaje global" in proceso.stdout
+=======
+main
